@@ -24,7 +24,9 @@ Concept: Platform Fighter
 
 2d fighting game with a big focus on movement around complex levels involving platforms, while still keeping traditional fighting games mechanics including things like auto turn around, combos, and special canceling.
 
-Problem: Create a 
+Problem: Create a fast paced platform fighter with some unique mechanic from what is normally seen in the genre.
+
+Question: How to combine the elements of a platformer and a fighting game into one game, while still making it unique from other platform fighters.
 
 User: Me
 
@@ -39,6 +41,8 @@ Concept: Education App
 Project that could be submitted as a TSA application competition. 
 
 Problem: Develop a software application that improves how people learn, teach, practice, or develop new skills. Competitors should identify an educational or training challenge affecting learners of any age and design an engaging, effective, and user-centered software solution.
+
+Question: Need to wait until we get TSA rubrics
 
 User: Me/TSA
 
