@@ -6,6 +6,10 @@ Concept: Monument Valley Clone
 
 An isometric puzzle game where the main game mechanic involves optical illusions, and manipulating level elements to complete puzzles.
 
+Problem: Create an accurate clone of the monument valley games that will allow me to build my own levels/ideas.
+
+Question: How can you create logic to handle 3d isometric projections and how to pathfind between them? In addition, how can you create the optical illusion using an isometric perspective that the game relies on?
+
 User: Me
 
 Features:
@@ -18,6 +22,8 @@ Concept: Platform Fighter
 
 2d fighting game with a big focus on movement around complex levels involving platforms, while still keeping traditional fighting games mechanics including things like auto turn around, combos, and special canceling.
 
+Problem: Create a 
+
 User: Me
 
 Features:
@@ -29,6 +35,8 @@ Features:
 Concept: Education App
 
 Project that could be submitted as a TSA application competition. 
+
+Problem: Develop a software application that improves how people learn, teach, practice, or develop new skills. Competitors should identify an educational or training challenge affecting learners of any age and design an engaging, effective, and user-centered software solution.
 
 User: Me/TSA
 
