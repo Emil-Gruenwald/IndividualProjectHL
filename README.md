@@ -16,6 +16,8 @@ Features:
 * Interactive Levels
 * Isometric Perspective
 * Perspective based puzzles
+
+![Image](https://github.com/Emil-Gruenwald/IndividualProjectHL/blob/main/images/MonumentValley.jpeg?raw=true)
   
 ## Project 2
 Concept: Platform Fighter
