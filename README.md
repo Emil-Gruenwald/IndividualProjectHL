@@ -21,7 +21,9 @@ Concept: Platform Fighter
 User: Me
 
 Features:
-*
+* Platformer-like movement
+* Stage control based
+* Rewarding for proper spacing and control
 
 ## Project 3
 Concept: Education App
