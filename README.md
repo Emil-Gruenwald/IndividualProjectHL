@@ -44,7 +44,7 @@ Project that could be submitted as a TSA application competition.
 
 Problem: Develop a software application that improves how people learn, teach, practice, or develop new skills. Competitors should identify an educational or training challenge affecting learners of any age and design an engaging, effective, and user-centered software solution.
 
-Question: Need to wait until we get TSA rubrics
+Question: How to improve learning experiences for people to make them more engaging and effective?
 
 User: Me/TSA
 
