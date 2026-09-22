@@ -35,6 +35,8 @@ Features:
 * Stage control based
 * Rewarding for proper spacing and control
 
+![Image](https://github.com/Emil-Gruenwald/IndividualProjectHL/blob/main/images/Rivals.jpeg?raw=true)
+
 ## Project 3
 Concept: Education App
 
