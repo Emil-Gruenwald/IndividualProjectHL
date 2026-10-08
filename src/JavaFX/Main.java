@@ -3,7 +3,7 @@ import javafx.stage.Stage;
 //import javafx.animation.AnimationTimer;
 
 public class Main extends Application {
-    //private AnimationTimer mainLoop;
+    // private AnimationTimer mainLoop;
     private Level[] levels;
 
     @Override
@@ -12,7 +12,10 @@ public class Main extends Application {
         for (int i = 0; i < tempLevel.length; i++) {
             for (int j = 0; j < tempLevel[i].length; j++) {
                 for (int k = 0; k < tempLevel[i][j].length; k++) {
-                    if (i == 0) {
+                    boolean atBoundaryX = (i == 0 || i == 9);      
+                    boolean atBoundaryY = (j == 0 || j == 9);
+                    boolean atBoundaryZ = (k == 0 || k == 9);
+                    if ((atBoundaryX && atBoundaryY) || (atBoundaryX && atBoundaryZ) || (atBoundaryY && atBoundaryZ)) {
                         tempLevel[i][j][k] = 1;
                     }
                 }
@@ -20,7 +23,7 @@ public class Main extends Application {
         }
 
         levels = new Level[1];
-        levels[0] = new Level(tempLevel, 10);
+        levels[0] = new Level(tempLevel, 15);
 
         primaryStage.setTitle("Test Application");
         primaryStage.setScene(levels[0].getScene());
