@@ -1,58 +1,30 @@
 import javafx.application.Application;
 import javafx.stage.Stage;
-import javafx.scene.Group;
-import javafx.scene.ParallelCamera;
-import javafx.scene.Scene;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Box;
-import javafx.scene.transform.Rotate;
-import javafx.animation.AnimationTimer;
+//import javafx.animation.AnimationTimer;
 
 public class Main extends Application {
-    private AnimationTimer mainLoop;
+    //private AnimationTimer mainLoop;
+    private Level[] levels;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Group root = new Group();
-        Scene scene = new Scene(root, 400, 600);
-        scene.setFill(Color.BLACK);
+        int[][][] tempLevel = new int[10][10][10];
+        for (int i = 0; i < tempLevel.length; i++) {
+            for (int j = 0; j < tempLevel[i].length; j++) {
+                for (int k = 0; k < tempLevel[i][j].length; k++) {
+                    if (i == 0) {
+                        tempLevel[i][j][k] = 1;
+                    }
+                }
+            }
+        }
 
-        ParallelCamera camera = new ParallelCamera();
-        scene.setCamera(camera);
-
-        Box box = new Box();
-        box.setWidth(100);
-        box.setHeight(100);
-        box.setDepth(100);
-        box.setTranslateX(150);
-        box.setTranslateY(150);
-       
-        Rotate rx = new Rotate(0, Rotate.X_AXIS);
-        Rotate ry = new Rotate(0, Rotate.Y_AXIS);
-        Rotate rz = new Rotate(0, Rotate.Z_AXIS);
-
-        box.getTransforms().addAll(rx, ry, rz);
-
-
-        rx.setAngle(30);
-        ry.setAngle(45);
-        rz.setAngle(15);
-
-        root.getChildren().add(box);
+        levels = new Level[1];
+        levels[0] = new Level(tempLevel, 10);
 
         primaryStage.setTitle("Test Application");
-        primaryStage.setScene(scene);
+        primaryStage.setScene(levels[0].getScene());
         primaryStage.show();
-
-        mainLoop = new AnimationTimer() {
-            @Override
-            public void handle(long currentNanoTime) {
-                rx.setAngle(rx.getAngle() + 5);
-                ry.setAngle(ry.getAngle() + 5);
-                rz.setAngle(rz.getAngle() + 5);
-            }
-        };
-        mainLoop.start();
     }
 
     public static void main(String args[]) {
