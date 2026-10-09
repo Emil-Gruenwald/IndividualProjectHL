@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 public class Level {
     private final ArrayList<Shape3D> objects = new ArrayList<>();
+    private final Group root = new Group();
     private ArrayList<StaticObject> staticObjects = new ArrayList<>();
     private ArrayList<InteractiveObject> interactiveObjects = new ArrayList<>();
     private int[][][] level;
@@ -18,7 +19,6 @@ public class Level {
 
 
     public Level(int[][][] level, int tileSize) {
-        Group root = new Group();
         this.level = level;
 
         constructLevel(tileSize);
@@ -66,6 +66,27 @@ public class Level {
         scene.widthProperty().addListener((observable, oldWidth, newWidth) -> centerCamera.run());
         scene.heightProperty().addListener((observable, oldHeight, newHeight) -> centerCamera.run());
         scene.setCamera(camera);
+    }
+
+    public void addShape (Shape3D shape) {
+        objects.add(shape);
+        root.getChildren().add(shape);
+    }
+
+    public int[][][] getLevel() {
+        return level;
+    }
+
+    public ArrayList<Shape3D> getObjects() {
+        return objects;
+    }
+
+    public ArrayList<StaticObject> getStaticObjects() {
+        return staticObjects;
+    }
+
+    public ArrayList<InteractiveObject> getInteractiveObjects() {
+        return interactiveObjects;
     }
 
     public Scene getScene() {
