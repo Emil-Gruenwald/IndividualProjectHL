@@ -11,6 +11,8 @@ import java.util.ArrayList;
 
 public class Level {
     private final ArrayList<Shape3D> objects = new ArrayList<>();
+    private ArrayList<StaticObject> staticObjects = new ArrayList<>();
+    private ArrayList<InteractiveObject> interactiveObjects = new ArrayList<>();
     private int[][][] level;
     private Scene scene;
 
@@ -76,11 +78,11 @@ public class Level {
                 for (int k = 0; k < level[i][j].length; k++) {
                     switch (level[i][j][k]) {
                         case 1:
-                            Box box = new Box(tileSize, tileSize, tileSize);
-                            box.setTranslateX(i * tileSize);
-                            box.setTranslateY(j * tileSize);
-                            box.setTranslateZ(k * tileSize);
-                            objects.add(box);
+                            staticObjects.add(new Cube(i, j, k, tileSize, Color.GRAY));
+                            for (Shape3D shape : staticObjects.get(staticObjects.size() - 1).getShapes()) {
+                                objects.add(shape);
+                            }
+                            break;
                     }
                 }
             }

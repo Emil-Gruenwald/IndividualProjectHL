@@ -23,7 +23,7 @@ public class Main extends Application {
         }
 
         levels = new Level[1];
-        levels[0] = new Level(tempLevel, 15);
+        levels[0] = new Level(tempLevel, 10);
 
         primaryStage.setTitle("Test Application");
         primaryStage.setScene(levels[0].getScene());
