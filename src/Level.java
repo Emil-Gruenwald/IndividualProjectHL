@@ -7,7 +7,10 @@ import javafx.scene.paint.Color;
 import javafx.geometry.Point3D;
 import javafx.scene.transform.Affine;
 
+import java.io.File;
 import java.util.ArrayList;
+
+import java.lang.reflect.Method;
 
 public class Level {
     private final ArrayList<Shape3D> objects = new ArrayList<>();
@@ -21,11 +24,45 @@ public class Level {
     public Level(int[][][] level, int tileSize) {
         this.level = level;
 
-        constructLevel(tileSize);
+        // constructLevel(tileSize);
 
-        for (Shape3D o : objects) {
-            root.getChildren().add(o);
+        // for (Shape3D o : objects) {
+        //     root.getChildren().add(o);
+        // }
+
+        MeshView[] meshViews = new MeshView[0];
+        try {
+            Class<?> importerClass = Class.forName("com.interactivemesh.jfx.importer.obj.ObjModelImporter");
+            Object importer = importerClass.getDeclaredConstructor().newInstance();
+
+            File objFile = new File("assets/OrthoTriangle.obj");
+            Method readMethod = importerClass.getMethod("read", File.class);
+            readMethod.invoke(importer, objFile);
+
+            Method getImportMethod = importerClass.getMethod("getImport");
+            Object imported = getImportMethod.invoke(importer);
+            if (imported instanceof MeshView[]) {
+                meshViews = (MeshView[]) imported;
+            } else if (imported instanceof Object[]) {
+                Object[] arr = (Object[]) imported;
+                meshViews = new MeshView[arr.length];
+                for (int i = 0; i < arr.length; i++) {
+                    meshViews[i] = (MeshView) arr[i];
+                }
+            }
+            Method closeMethod = importerClass.getMethod("close");
+            closeMethod.invoke(importer);
+        } catch (ClassNotFoundException e) {
+            System.err.println("Optional ObjModelImporter not found; skipping model import.");
+        } catch (Exception e) {
+            System.err.println("Error loading 3D model: " + e.getMessage());
         }
+
+        Group modelGroup = new Group(meshViews);
+        modelGroup.setScaleX(10.0);
+        modelGroup.setScaleY(10.0);
+        modelGroup.setScaleZ(10.0);
+        root.getChildren().add(modelGroup);
 
         scene = new Scene(root, 400, 600, true);
         scene.setFill(Color.BLACK);
