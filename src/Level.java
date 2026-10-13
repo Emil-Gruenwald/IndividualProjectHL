@@ -5,6 +5,7 @@ import javafx.scene.PointLight;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.geometry.Point3D;
+import javafx.geometry.Bounds;
 import javafx.scene.transform.Affine;
 
 import java.io.File;
@@ -59,31 +60,45 @@ public class Level {
         }
 
         Group modelGroup = new Group(meshViews);
-        modelGroup.setScaleX(10.0);
-        modelGroup.setScaleY(10.0);
-        modelGroup.setScaleZ(10.0);
+        modelGroup.setScaleX(20.0);
+        modelGroup.setScaleY(20.0);
+        modelGroup.setScaleZ(20.0);
         root.getChildren().add(modelGroup);
+        Bounds modelBounds = modelGroup.getBoundsInParent();
 
         scene = new Scene(root, 400, 600, true);
         scene.setFill(Color.BLACK);
 
         ParallelCamera camera = new ParallelCamera();
         Point3D target = new Point3D(
-                (level.length - 1) * tileSize / 2.0,
-                (level[0].length - 1) * tileSize / 2.0,
-                (level[0][0].length - 1) * tileSize / 2.0
+                (modelBounds.getMinX() + modelBounds.getMaxX()) / 2.0,
+                (modelBounds.getMinY() + modelBounds.getMaxY()) / 2.0,
+                (modelBounds.getMinZ() + modelBounds.getMaxZ()) / 2.0
         );
-        Point3D forward = new Point3D(-1, 1, 1).normalize();
-        Point3D worldUp = new Point3D(0, -1, 0);
-        Point3D cameraRight = forward.crossProduct(worldUp).normalize();
-        Point3D cameraDown = forward.crossProduct(cameraRight).normalize();
+        double rotationX = Math.toRadians(54.73);
+        double rotationZ = Math.toRadians(45.0);
+        Point3D cameraRight = new Point3D(
+                Math.cos(rotationZ),
+                Math.sin(rotationZ),
+                0
+        );
+        Point3D cameraDown = new Point3D(
+                Math.sin(rotationZ) * Math.cos(rotationX),
+                -Math.cos(rotationZ) * Math.cos(rotationX),
+                -Math.sin(rotationX)
+        );
+        Point3D forward = new Point3D(
+                -Math.sin(rotationZ) * Math.sin(rotationX),
+                Math.cos(rotationZ) * Math.sin(rotationX),
+                -Math.cos(rotationX)
+        );
         double cameraDistance = Math.max(level.length, Math.max(level[0].length, level[0][0].length)) * tileSize * 2;
 
-        PointLight light = new PointLight(Color.WHITE);
-        light.setTranslateX(target.getX() + cameraDistance);
-        light.setTranslateY(target.getY() - cameraDistance);
-        light.setTranslateZ(target.getZ() - cameraDistance);
-        root.getChildren().add(light);
+        // PointLight light = new PointLight(Color.WHITE);
+        // light.setTranslateX(target.getX() + cameraDistance);
+        // light.setTranslateY(target.getY() - cameraDistance);
+        // light.setTranslateZ(target.getZ() - cameraDistance);
+        // root.getChildren().add(light);
 
         Affine cameraRotation = new Affine(
                 cameraRight.getX(), cameraDown.getX(), forward.getX(), 0,
