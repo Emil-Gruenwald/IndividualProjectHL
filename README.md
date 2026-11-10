@@ -1,6 +1,9 @@
 # Individual Project 
 Pathway: IB HL (But not really)
 
+## New Info:
+* Project needs to solve a real world problem. You should be able to state the problem in one sentence.
+
 ## Project 1
 Concept: Monument Valley Clone
 
